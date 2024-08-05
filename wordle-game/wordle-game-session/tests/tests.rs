@@ -10,7 +10,7 @@ fn get_program(system: &System) -> Program {
     let session = Program::current(system);
     let wordle = Program::from_file(
         system,
-        "../target/wasm32-unknown-unknown/release/wordle_game.opt.wasm",
+        "../target/wasm32-unknown-unknown/debug/wordle_game.opt.wasm",
     );
 
     assert_eq!(session.id(), 1.into());

@@ -1,4 +1,5 @@
 [workspace.package]
+authors = ["Gear Foundation <hello@gear.foundation>"]
 edition = "2021"
 homepage = "https://wiki.gear-tech.io/docs/examples/prerequisites"
 license = "MIT"
