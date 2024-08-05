@@ -12,13 +12,13 @@ gstd.workspace = true
 gmeta.workspace = true
 parity-scale-codec.workspace = true
 scale-info.workspace = true
-wordle-io.workspace = true
-game-session-io.workspace = true
+wordle-game-io.workspace = true
+wordle-game-session-io.workspace = true
 
 [build-dependencies]
 gear-wasm-builder.workspace = true
-wordle-io.workspace = true
-game-session-io.workspace = true
+wordle-game-io.workspace = true
+wordle-game-session-io.workspace = true
 
 [dev-dependencies]
 gtest.workspace = true
