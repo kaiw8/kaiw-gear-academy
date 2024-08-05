@@ -1,28 +1,14 @@
 #![no_std]
-use gstd::{
-    exec,
-    exec::{wait, wake},
-    msg,
-    prelude::*,
-};
-use wordle_game_session_io::*;
+use gstd::{exec, exec::{wait, wake}, msg, prelude::*, ActorId};
+use game_session_io::*;
 
 static mut WORDLE_STATE: Option<WordleState> = None;
 
 const COUNT_WORD: usize = 5;
 
-fn get_wordle_state() -> &'static mut WordleState {
-    unsafe {
-        let game_state = WORDLE_STATE
-            .as_mut()
-            .expect("WORDLE_STATE isn't initialized");
-        game_state
-    }
-}
 
 #[no_mangle]
 extern "C" fn init() {
-    gstd::debug!("===[program init]===");
     let wordle_init = msg::load::<WordleInit>().expect("Failed to load");
     unsafe {
         WORDLE_STATE = Some(WordleState {
@@ -34,12 +20,6 @@ extern "C" fn init() {
     }
 }
 
-#[no_mangle]
-unsafe extern "C" fn state() {
-    gstd::debug!("===[program state]===");
-    let state = get_wordle_state();
-    msg::reply(state, 0).expect("Unable to share the state");
-}
 
 #[no_mangle]
 unsafe extern "C" fn handle() {
@@ -48,9 +28,6 @@ unsafe extern "C" fn handle() {
     let state = get_wordle_state();
     let action: WordleAction = msg::load().expect("Failed to load payload");
 
-    gstd::debug!("===[program handle]===");
-    gstd::debug!("action = {:?}", action);
-    gstd::debug!("state = {:?}", state);
 
     if action == WordleAction::CheckGameStatus {
         let status = match &state.status {
@@ -71,11 +48,6 @@ unsafe extern "C" fn handle() {
     match &state.status {
         WordleStatus::Init => {
             if action == WordleAction::StartGame {
-                gstd::debug!(
-                    "send_delayed, to: {}, block: {}",
-                    exec::program_id(),
-                    state.delay_timeout
-                );
                 msg::send_delayed(
                     exec::program_id(),
                     WordleAction::CheckGameStatus,
@@ -209,5 +181,18 @@ unsafe extern "C" fn handle_reply() {
     };
 }
 
-// #[cfg(test)]
-// mod tests;
+#[no_mangle]
+unsafe extern "C" fn state() {
+    let state = get_wordle_state();
+    msg::reply(state, 0).expect("Unable to share the state");
+}
+
+
+fn get_wordle_state() -> &'static mut WordleState {
+    unsafe {
+        let game_state = WORDLE_STATE
+            .as_mut()
+            .expect("WORDLE_STATE isn't initialized");
+        game_state
+    }
+}

@@ -3,16 +3,7 @@
 use gmeta::{In, Metadata, Out};
 use gstd::{prelude::*, ActorId, MessageId};
 
-pub struct WordleSessionMetadata;
 
-impl Metadata for WordleSessionMetadata {
-    type Init = In<WordleInit>;
-    type Handle = InOut<Action, Event>;
-    type Others = ();
-    type Reply = ();
-    type Signal = ();
-    type State = Out<WordleState>;
-}
 
 #[derive(Encode, Decode, TypeInfo, Debug, PartialEq, Eq, Clone)]
 pub enum WordleAction {
@@ -72,4 +63,15 @@ pub enum WordleEvent {
     CheckWordFail(wordle_game_io::Event),
     YouAreWin,
     YouAreLoose,
+}
+
+pub struct WordleSessionMetadata;
+
+impl Metadata for WordleSessionMetadata {
+    type Init = In<WordleInit>;
+    type Handle = InOut<Action, Event>;
+    type Others = ();
+    type Reply = ();
+    type Signal = ();
+    type State = Out<WordleState>;
 }

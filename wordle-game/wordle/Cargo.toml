@@ -1,5 +1,5 @@
 [package]
-name = "wordle-game-io"
+name = "wordle"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true
@@ -8,8 +8,17 @@ publish.workspace = true
 version.workspace = true
 
 [dependencies]
-gmeta.workspace = true
 gstd.workspace = true
+gmeta.workspace = true
 parity-scale-codec.workspace = true
 scale-info.workspace = true
+wordle-io.workspace = true
 
+[build-dependencies]
+gear-wasm-builder.workspace = true
+wordle-io.workspace = true
+
+[dev-dependencies]
+gtest.workspace = true
+gclient.workspace = true
+tokio.workspace = true
