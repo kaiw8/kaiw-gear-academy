@@ -7,7 +7,7 @@ pub struct WordleSessionMetadata;
 
 impl Metadata for WordleSessionMetadata {
     type Init = In<WordleInit>;
-    type Handle = ();
+    type Handle = InOut<Action, Event>;
     type Others = ();
     type Reply = ();
     type Signal = ();
