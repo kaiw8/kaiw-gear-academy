@@ -1,5 +1,5 @@
 [package]
-name = "wordle-game-session-io"
+name = "wordle-io"
 authors.workspace = true
 edition.workspace = true
 homepage.workspace = true
@@ -11,5 +11,5 @@ version.workspace = true
 gmeta.workspace = true
 gstd.workspace = true
 parity-scale-codec.workspace = true
-wordle-game-io.workspace = true
 scale-info.workspace = true
+
