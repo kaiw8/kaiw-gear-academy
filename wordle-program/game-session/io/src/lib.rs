@@ -1,8 +1,7 @@
-
 #![no_std]
 
 use gmeta::{In, InOut, Metadata, Out};
-use gstd::{collections::HashMap, prelude::*, msg ,debug, ActorId, MessageId};
+use gstd::{collections::HashMap, prelude::*, msg， ActorId, MessageId};
 
 #[derive(Debug, Default, Clone, Encode, Decode, TypeInfo)]
 pub struct GameSessionState {
