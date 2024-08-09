@@ -153,6 +153,7 @@ extern "C" fn state() {
 fn get_game_session_mut() -> &'static mut GameSession {
     unsafe { GAME_SESSION_STATE.as_mut().expect("游戏会话未初始化") }
 }
+
 fn get_game_session() -> &'static GameSession {
     unsafe { GAME_SESSION_STATE.as_ref().expect("游戏会话未初始化") }
 }
