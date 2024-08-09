@@ -1,3 +1,4 @@
+
 use game_session_io::*;
 use gtest::{Log, ProgramBuilder, System};
 
@@ -226,3 +227,4 @@ fn test_delayed_logic() {
     let state: GameSessionState = game_session_program.read_state(b"").unwrap();
     println!("{:?}", state);
 }
+
