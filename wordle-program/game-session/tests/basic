@@ -132,8 +132,8 @@ mod tests {
 
         // 模拟用户发送 StartGame 请求
         assert!(!game_session.send(USER1, GameSessionAction::StartGame).main_failed());
-        //区块超过之后会报错
-        //sys.spend_blocks(300);
+        
+        sys.spend_blocks(200);
 
         let state: GameSessionState = game_session.read_state(()).unwrap();
         let session_info = &state
