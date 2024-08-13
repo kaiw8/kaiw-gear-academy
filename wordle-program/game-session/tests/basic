@@ -133,7 +133,7 @@ mod tests {
         // 模拟用户发送 StartGame 请求
         assert!(!game_session.send(USER1, GameSessionAction::StartGame).main_failed());
         
-        sys.spend_blocks(200);
+        sys.spend_blocks(20);
 
         let state: GameSessionState = game_session.read_state(()).unwrap();
         let session_info = &state
